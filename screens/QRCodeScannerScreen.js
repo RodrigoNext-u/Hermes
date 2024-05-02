@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, Modal, Button, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import axios from 'axios';
-import { ScannerStyles } from '../ScreenStyles'; // Importez le module styles
+import { ScannerStyles } from '../ScreenStyles';
 
 const QRCodeScannerScreen = () => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -22,7 +22,7 @@ const QRCodeScannerScreen = () => {
 
   const fetchData = async (qrCode) => {
     try {
-      const response = await axios.get(`http://192.168.1.92/projet%20v2/projet-x/src/API/API.php/qrcode/`+qrCode);
+      const response = await axios.get(`http://192.168.0.19/projet%20v2/projet-x/src/API/API.php/qrcode/`+qrCode);
       setComponentDetails(response.data);
       setModalVisible(true);
     } catch (error) {
@@ -84,7 +84,7 @@ const QRCodeScannerScreen = () => {
               <Text>Prix: {componentDetails[0].prix}</Text>
               <Text>QR Code: {qrData}</Text>
               <Image
-                source={{ uri: `http://192.168.1.92/projet%20v2/projet-x/src/ImageComposant/${componentDetails[0].type}/${componentDetails[0].qrCode}.jpg` }}
+                source={{ uri: `http://192.168.0.19/projet%20v2/projet-x/src/ImageComposant/${componentDetails[0].type}/${componentDetails[0].qrCode}.jpg` }}
                 style={ScannerStyles.componentImage}
                 alt={componentDetails[0].qrCode}
               />

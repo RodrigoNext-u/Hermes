@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, RefreshControl, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, RefreshControl, TouchableOpacity, Image } from 'react-native';
 import axios from 'axios';
-import { GlobalStockScreenStyle } from '../ScreenStyles';
+import { GlobalStockScreenStyle, ScannerStyles } from '../ScreenStyles';
 
 const StockStatusScreen = ({ navigation }) => {
   const [stockData, setStockData] = useState([]);
@@ -13,8 +13,9 @@ const StockStatusScreen = ({ navigation }) => {
 
   const fetchStockData = async () => {
     try {
-      const response = await axios.get('http://192.168.1.92/projet%20v2/projet-x/src/API/API.php/stocks');
+      const response = await axios.get('http://192.168.0.19/projet%20v2/projet-x/src/API/API.php/stocks');
       setStockData(response.data);
+
     } catch (error) {
       console.error('Error fetching stock data:', error);
     } finally {
@@ -33,11 +34,17 @@ const StockStatusScreen = ({ navigation }) => {
       <Text style={[GlobalStockScreenStyle.text]}>QR Code: {item.qrCode}</Text>
       <Text style={[GlobalStockScreenStyle.text]}>Quantité Réelle: {item.qteReel}</Text>
       <Text style={[GlobalStockScreenStyle.text]}>Quantité Minimale: {item.qteMin}</Text>
+      <Image
+                source={{ uri: `http://192.168.0.19/projet%20v2/projet-x/src/ImageComposant/${item.type}/${item.qrCode}.jpg` }}
+                style={ScannerStyles.componentImage}
+                alt={item.qrCode}
+              />
     </View>
+    
   );
 
   const handleCCButtonPress = () => {
-    navigation.navigate('ComponentStockScreen'); // Navigate to ComponentStockScreen
+    navigation.navigate('ComponentStockScreen');
   };
 
   return (
