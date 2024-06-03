@@ -17,7 +17,7 @@ const HomeScreen = ({ navigation }) => {
   }, []);
 
   const handlePressScan = () => {
-    navigation.navigate('QRCodeScanner');
+    navigation.navigate('QRCodeScannerScreen');
   };
 
   const handlePressStock = () => {
@@ -39,36 +39,38 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <CustomStatusBar statusBgColor="#505050">
-    <View style={HomeScreenStyles.container}>
-      <Image source={require('./Icon.jpg')} style={HomeScreenStyles.logo} />
-      <TouchableOpacity style={HomeScreenStyles.button} onPress={handlePressScan}>
-        <Text style={[HomeScreenStyles.buttonText, HomeScreenStyles.goldText]}>Scanner Composant</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={HomeScreenStyles.button} onPress={handlePressStock}>
-        <Text style={[HomeScreenStyles.buttonText, HomeScreenStyles.goldText]}>Stock d'un composant</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={HomeScreenStyles.button} onPress={handlePressStocks}>
-        <Text style={[HomeScreenStyles.buttonText, HomeScreenStyles.goldText]}>Stocks globaux</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={HomeScreenStyles.button} onPress={handlePressCommande}>
-        <Text style={[HomeScreenStyles.buttonText, HomeScreenStyles.goldText]}>Scan Commande</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={HomeScreenStyles.button} onPress={() => setModalVisible(true)}>
-        <Text style={[HomeScreenStyles.buttonText, HomeScreenStyles.goldText]}>Générer QR Code</Text>
-      </TouchableOpacity>
+      <View style={HomeScreenStyles.container}>
+        <Image source={require('./Icon.jpg')} style={HomeScreenStyles.logo} />
+        <TouchableOpacity style={HomeScreenStyles.button} onPress={handlePressScan}>
+          <Text style={[HomeScreenStyles.buttonText, HomeScreenStyles.goldText]}>Scanner Composant</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={HomeScreenStyles.button} onPress={handlePressStock}>
+          <Text style={[HomeScreenStyles.buttonText, HomeScreenStyles.goldText]}>Stock d'un composant</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={HomeScreenStyles.button} onPress={handlePressStocks}>
+          <Text style={[HomeScreenStyles.buttonText, HomeScreenStyles.goldText]}>Stocks globaux</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={HomeScreenStyles.button} onPress={handlePressCommande}>
+          <Text style={[HomeScreenStyles.buttonText, HomeScreenStyles.goldText]}>Scan Commande</Text>
+        </TouchableOpacity>
+        {/* <TouchableOpacity style={HomeScreenStyles.button} onPress={() => setModalVisible(true)}>
+          <Text style={[HomeScreenStyles.buttonText, HomeScreenStyles.goldText]}>Générer QR Code</Text>
+        </TouchableOpacity> */}
 
-      <QRCodeModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        handleGenerateQRCode={handleGenerateQRCode}
-      />
-
-      {qrData ? (
-        <View style={HomeScreenStyles.qrCodeContainer}>
-          <QRCode value={qrData} size={200} />
-        </View>
-      ) : null}
-    </View></CustomStatusBar>
+        <QRCodeModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          handleGenerateQRCode={handleGenerateQRCode}
+          textInput={textInput}
+          setTextInput={setTextInput}
+        />
+        {qrData ? (
+          <View style={HomeScreenStyles.qrCodeContainer}>
+            <QRCode value={qrData} size={200} />
+          </View>
+        ) : null}
+      </View>
+    </CustomStatusBar>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen';
@@ -14,7 +15,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Hermès">
         <Stack.Screen name="Hermès" component={HomeScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="QRCodeScanner" component={QRCodeScannerScreen} options={{title: 'Scanner Composant', headerStyle: {
+        <Stack.Screen name="QRCodeScannerScreen" component={QRCodeScannerScreen} options={{title: 'Scanner Composant', headerStyle: {
             backgroundColor: '#000E3D',}, headerTintColor: '#E5B80B', headerTitleStyle: {
               fontWeight: 'bold'}}}/>
         <Stack.Screen name="ComponentStockScreen" component={ComponentStockScreen} options={{title: 'Stock d\'un composant', headerStyle: {

@@ -1,14 +1,11 @@
 // QRCodeModal.js
 
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, Modal, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-const QRCodeModal = ({ modalVisible, setModalVisible, handleGenerateQRCode }) => {
-  const [textInput, setTextInput] = useState('');
-
+const QRCodeModal = ({ modalVisible, setModalVisible, handleGenerateQRCode, textInput, setTextInput }) => {
   return (
     <Modal
-    
       animationType="slide"
       transparent={true}
       visible={modalVisible}
