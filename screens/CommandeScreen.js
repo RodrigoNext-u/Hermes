@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, Modal, Button, Image, TouchableOpacity } from '
 import { Camera } from 'expo-camera';
 import axios from 'axios';
 import { ScannerStyles } from '../ScreenStyles'; // Importez le module styles
+import geturl from '../UrlApi'
+
+const url = geturl();
 
 const CommandeScreen = () => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -23,7 +26,7 @@ const CommandeScreen = () => {
 
   const fetchData = async (qrCode) => {
     try {
-      const response = await axios.get(`http://192.168.1.92/projet%20v2/projet-x/src/API/API.php/commande/` + qrCode);
+      const response = await axios.get(url+`/src/API/API.php/commande/` + qrCode);
       setComponents(response.data);
       setCurrentComponentIndex(0);
       setModalVisible(true);
@@ -71,7 +74,7 @@ const CommandeScreen = () => {
           <Text>Statut: {component.statut}</Text>
           <Text>QR Code: {qrData}</Text>
           <Image
-            source={{ uri: `http://192.168.1.92/projet%20v2/projet-x/src/ImageComposant/${component.type}/${component.qrCode}.jpg` }}
+            source={{ uri: url+`/src/ImageComposant/${component.type}/${component.qrCode}.jpg` }}
             style={ScannerStyles.componentImage}
             alt={component.qrCode}
           />
@@ -85,7 +88,7 @@ const CommandeScreen = () => {
           <Text>Quantite: {component.quantite}</Text>
           <Text>Statut: {component.statut}</Text>
           <Image
-            source={{ uri: `http://192.168.1.92/projet%20v2/projet-x/src/ImageService/${component.libelleService}.jpg` }}
+            source={{ uri: url+`/src/ImageService/${component.libelleService}.jpg` }}
             style={ScannerStyles.componentImage}
             alt={component.libelleService}
             borderRadius={45}

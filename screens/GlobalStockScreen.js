@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, RefreshControl, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { GlobalStockScreenStyle } from '../ScreenStyles';
+import geturl from '../UrlApi'
+
+const url = geturl();
 
 const StockStatusScreen = ({ navigation }) => {
   const [stockData, setStockData] = useState([]);
@@ -13,7 +16,7 @@ const StockStatusScreen = ({ navigation }) => {
 
   const fetchStockData = async () => {
     try {
-      const response = await axios.get('http://192.168.1.92/projet%20v2/projet-x/src/API/API.php/stocks');
+      const response = await axios.get(url + '/src/API/API.php/stocks');
       setStockData(response.data);
     } catch (error) {
       console.error('Error fetching stock data:', error);
