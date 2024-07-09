@@ -16,7 +16,6 @@ const CommandeScreen = () => {
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [lockScanner, setLockScanner] = useState(false);
   const cameraRef = useRef(null);
-  const url = getUrl();
 
   useEffect(() => {
     (async () => {
