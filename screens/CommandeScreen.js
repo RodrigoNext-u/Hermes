@@ -16,6 +16,7 @@ const CommandeScreen = () => {
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const [lockScanner, setLockScanner] = useState(false);
   const cameraRef = useRef(null);
+  const url = getUrl();
 
   useEffect(() => {
     (async () => {
@@ -66,17 +67,17 @@ const CommandeScreen = () => {
     if (component.idComposant !== null) {
       return (
         <View style={ScannerStyles.componentDetailsContainer}>
-          <Text>Type: {component.type}</Text>
           <Text>Marque: {component.marque}</Text>
           <Text>Libellé: {component.libelle}</Text>
           <Text>Prix: {component.prix}</Text>
           <Text>Quantite: {component.quantite}</Text>
           <Text>Statut: {component.statut}</Text>
-          <Text>QR Code: {qrData}</Text>
+          <Text>QR Code: {component.qrCode}</Text>
           <Image
             source={{ uri: url+`/src/ImageComposant/${component.type}/${component.qrCode}.jpg` }}
             style={ScannerStyles.componentImage}
-            alt={component.qrCode}
+            alt={component.libelleService}
+            borderRadius={45}
           />
         </View>
       );
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   navigationText: {
-    fontSize: 24,
+    fontSize: 48,
     fontWeight: 'bold',
     color: 'gold',
   },

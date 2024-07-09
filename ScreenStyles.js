@@ -35,6 +35,7 @@ export const ScannerStyles = StyleSheet.create({
     width: 200,
     height: 200,
     marginTop: 10,
+    borderRadius: 25,
   },
 });
 

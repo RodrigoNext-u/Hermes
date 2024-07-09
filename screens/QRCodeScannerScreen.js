@@ -15,6 +15,8 @@ const QRCodeScannerScreen = () => {
   const [componentDetails, setComponentDetails] = useState(null);
   const [lockScanner, setLockScanner] = useState(false);
   const cameraRef = useRef(null);
+  const url = getUrl();
+
 
   useEffect(() => {
     (async () => {
