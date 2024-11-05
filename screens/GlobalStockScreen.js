@@ -15,7 +15,7 @@ const StockStatusScreen = ({ navigation }) => {
 
   const fetchStockData = async () => {
     try {
-      const response = await axios.get(url +'/src/API/API.php/stocks');
+      const response = await axios.get(url +'/stocks');
       setStockData(response.data);
     } catch (error) {
       console.error('Error fetching stock data:', error);

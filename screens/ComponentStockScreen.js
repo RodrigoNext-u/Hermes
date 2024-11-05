@@ -6,6 +6,7 @@ import { ScannerStyles } from '../ScreenStyles'; // Importez le module styles
 import geturl from '../UrlApi'
 
 const url = geturl();
+const urlimg = "https://valkyrie-production.up.railway.app/";
 
 const ComponentStockScreen = () => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -25,7 +26,7 @@ const ComponentStockScreen = () => {
 
   const fetchData = async (qrCode) => {
     try {
-      const response = await axios.get(url + `/src/API/API.php/stock/`+qrCode);
+      const response = await axios.get(url + `/stock/`+qrCode);
       setComponentDetails(response.data);
       setModalVisible(true);
     } catch (error) {
@@ -83,7 +84,7 @@ const ComponentStockScreen = () => {
               <Text>Quantité maximum: {componentDetails[0].qteMax}</Text>
               <Text>Seuil d'alerte: {componentDetails[0].qteAlerte}</Text>
               <Image
-                source={{ uri: url +`/src/ImageComposant/${componentDetails[0].type}/${componentDetails[0].qrCode}.jpg` }}
+                source={{ uri: urlimg +`/ImageComposant/${componentDetails[0].type}/${componentDetails[0].qrCode}.jpg` }}
                 style={ScannerStyles.componentImage}
                 alt={componentDetails[0].qrCode}
               />

@@ -6,6 +6,7 @@ import { ScannerStyles } from '../ScreenStyles'; // Importez le module styles
 import geturl from '../UrlApi'
 
 const url = geturl();
+const urlimg = "https://valkyrie-production.up.railway.app/";
 
 const CommandeScreen = () => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -26,7 +27,7 @@ const CommandeScreen = () => {
 
   const fetchData = async (qrCode) => {
     try {
-      const response = await axios.get(url+`/src/API/API.php/commande/` + qrCode);
+      const response = await axios.get(url+`/commande/` + qrCode);
       setComponents(response.data);
       setCurrentComponentIndex(0);
       setModalVisible(true);
@@ -73,7 +74,7 @@ const CommandeScreen = () => {
           <Text>Statut: {component.statut}</Text>
           <Text>QR Code: {component.qrCode}</Text>
           <Image
-            source={{ uri: url+`/src/ImageComposant/${component.type}/${component.qrCode}.jpg` }}
+            source={{ uri: urlimg+`/ImageComposant/${component.type}/${component.qrCode}.jpg` }}
             style={ScannerStyles.componentImage}
             alt={component.libelleService}
             borderRadius={45}
@@ -88,7 +89,7 @@ const CommandeScreen = () => {
           <Text>Quantite: {component.quantite}</Text>
           <Text>Statut: {component.statut}</Text>
           <Image
-            source={{ uri: url+`/src/ImageService/${component.libelleService}.jpg` }}
+            source={{ uri: urlimg+`/ImageService/${component.libelleService}.jpg` }}
             style={ScannerStyles.componentImage}
             alt={component.libelleService}
             borderRadius={45}
